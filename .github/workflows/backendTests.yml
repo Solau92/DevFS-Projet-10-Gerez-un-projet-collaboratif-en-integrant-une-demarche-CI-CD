@@ -31,6 +31,7 @@ jobs:
           path: ./back/target/surefire-reports
         
       - name: Generate JaCoCo test coverage report
+        if: success()
         working-directory: ./back
         run: mvn jacoco:report
         
