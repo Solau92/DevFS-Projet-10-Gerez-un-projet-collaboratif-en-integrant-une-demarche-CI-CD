@@ -1,0 +1,46 @@
+on:
+  workflow_call:
+
+jobs:
+
+  build-and-test-backend:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: maven
+
+      - name: Test backend
+        working-directory: ./back
+        run: mvn clean test
+
+      - name: Get Surefire Report if failing tests
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Surefire Report
+          path: ./back/target/surefire-reports
+        
+      - name: Generate JaCoCo test coverage report
+        working-directory: ./back
+        run: mvn jacoco:report
+        
+      - name: Get JaCoCo test coverage report
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: Jacoco Report
+          path: ./back/target/site/jacoco/
+
+      - name: Build with Maven
+        working-directory: ./back
+        run: mvn -B package --file pom.xml
