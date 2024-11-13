@@ -1,7 +1,7 @@
 on:
     workflow_call:
   
-  jobs:
+jobs:
   
     build-and-test-frontend:
     
