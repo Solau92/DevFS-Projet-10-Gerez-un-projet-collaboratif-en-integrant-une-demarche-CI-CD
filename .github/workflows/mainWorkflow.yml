@@ -6,3 +6,6 @@ jobs:
 
   call-worklow-backend-tests:
     uses: ./.github/workflows/backendTests.yml
+
+  call-worklow-frontend-tests:
+    uses: ./.github/workflows/frontendTests.yml
