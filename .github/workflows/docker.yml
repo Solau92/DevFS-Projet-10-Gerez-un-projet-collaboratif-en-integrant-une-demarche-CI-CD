@@ -29,12 +29,12 @@ jobs:
         with:
             context: ./back
             push: true
-            tags: solau92/projet10back:latest
+            tags: solau92/bobappback:latest
         
       - name: Build and push frontend
         uses: docker/build-push-action@v6
         with:
             context: ./front
             push: true
-            tags: solau92/projet10front:latest 
+            tags: solau92/bobappfront:latest 
   
