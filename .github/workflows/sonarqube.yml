@@ -11,51 +11,53 @@ jobs:
 
       ## Front 
 
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      # - uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
-      - name: Analyze frontend
-        uses: SonarSource/sonarcloud-github-action@master
-        with: 
-          projectBaseDir: ./front
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - uses: actions/checkout@v4
-        with:
-            fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-        
-      # - name: Set up JDK
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     java-version: 11
-      #     distribution: 'temurin'
-        
-      # - name: Cache SonarQube packages
-      #   uses: actions/cache@v4
-      #   with:
-      #     working-directory: ./back
-      #     path: ~/.sonar/cache
-      #     key: ${{ runner.os }}-sonar
-      #     restore-keys: ${{ runner.os }}-sonar
-        
-      # - name: Cache Maven packages
-      #   uses: actions/cache@v4
-      #   with:
-      #     working-directory: ./back
-      #     path: ~/.m2
-      #     key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      #     restore-keys: ${{ runner.os }}-m2
-      
-      # - name: Analyze backend
-      #   uses: sonarsource/sonarcloud-github-action@v3.1.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+      # - name: Analyze frontend
+      #   uses: SonarSource/sonarcloud-github-action@master
       #   with: 
-      #     projectBaseDir: ./back
+      #     projectBaseDir: ./front
       #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # - uses: actions/checkout@v4
+      #   with:
+      #       fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      ## Back
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+        
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          working-directory: ./back
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+        
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          working-directory: ./back
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      
+      - name: Analyze backend
+        uses: sonarsource/sonarcloud-github-action@v3.1.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+        with: 
+          projectBaseDir: ./back
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # # - name: Analyze backend
       # #   env:
