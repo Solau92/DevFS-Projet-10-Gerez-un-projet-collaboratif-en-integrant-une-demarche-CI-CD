@@ -35,51 +35,50 @@ jobs:
           java-version: 11
           distribution: 'temurin'
         
-      # - name: Cache SonarQube packages
-      #   uses: actions/cache@v4
-      #   env: 
-      #     working-directory: ./back
-      #   with:
-      #     #working-directory: ./back
-      #     path: ~/.sonar/cache
-      #     key: ${{ runner.os }}-sonar
-      #     restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        # env: 
+        #   working-directory: ./back
+        with:
+          #working-directory: ./back
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
         
-      # - name: Cache Maven packages
-      #   uses: actions/cache@v4
-      #   env: 
-      #     working-directory: ./back
-      #   with:
-      #     #working-directory: ./back
-      #     path: ~/.m2
-      #     key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      #     restore-keys: ${{ runner.os }}-m2
-      
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        # env: 
+        #   working-directory: ./back
+        with:
+          #working-directory: ./back
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
       - name: Analyze backend
-        uses: sonarsource/sonarcloud-github-action@v3.1.0
-        with: 
-          projectBaseDir: back
-          args: >
-            -Dsonar.organization=solau92
-            -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
-            -Dsonar.sources=back/src/main/java
-            -Dsonar.tests=back/src/test/java
-            -Dsonar.java.binaries=back/target/classes
-            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
-            -Dsonar.coverage.exclusions=back/target/**,back/src/test/*
-            -Dsonar.exclusions=back/target/**
-            -Dsonar.verbose=true
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          projectBaseDir: ~/back
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        #working-directory: back
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
 
       # - name: Analyze backend
-      #   env:
-      #     projectBaseDir: ~/back
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   #working-directory: back
-      #   run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
-
+      # uses: sonarsource/sonarcloud-github-action@v3.1.0
+      # with: 
+      #   # projectBaseDir: back
+      #   args: >
+      #     -Dsonar.organization=solau92
+      #     -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
+      #     -Dsonar.sources=back/src/main/java
+      #     -Dsonar.tests=back/src/test/java
+      #     -Dsonar.java.binaries=back/target/classes
+      #     -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+      #     -Dsonar.coverage.exclusions=back/target/**,back/src/test/*
+      #     -Dsonar.exclusions=back/target/**
+      #     -Dsonar.verbose=true
+      # env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       
