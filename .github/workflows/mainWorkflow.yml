@@ -12,6 +12,7 @@ jobs:
 
   call-workflow-sonarqube:
     uses: ./.github/workflows/sonarqube.yml
+    secrets: inherit
 
   call-workflow-docker:
     needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-sonarqube]
