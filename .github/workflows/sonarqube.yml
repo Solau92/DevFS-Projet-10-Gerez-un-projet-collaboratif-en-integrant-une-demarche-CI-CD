@@ -9,6 +9,20 @@ jobs:
 
     steps:
 
+      ## Front 
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      - name: Analyze frontend
+        uses: SonarSource/sonarcloud-github-action@master
+        with: 
+          projectBaseDir: ./front
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - uses: actions/checkout@v4
         with:
             fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
@@ -50,3 +64,6 @@ jobs:
       #     projectBaseDir: ~/back
       #   working-directory: ./back
       #   run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
+
+
+      
