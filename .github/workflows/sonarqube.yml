@@ -63,12 +63,12 @@ jobs:
           args: >
             -Dsonar.organization=solau92
             -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
-            -Dsonar.sources=src/main/java
-            -Dsonar.tests=src/test/java
-            -Dsonar.java.binaries=target/classes
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-            -Dsonar.coverage.exclusions=target/**,src/test/*
-            -Dsonar.exclusions=target/**
+            -Dsonar.sources=back/src/main/java
+            -Dsonar.tests=back/src/test/java
+            -Dsonar.java.binaries=back/target/classes
+            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+            -Dsonar.coverage.exclusions=back/target/**,back/src/test/*
+            -Dsonar.exclusions=back/target/**
             -Dsonar.verbose=true
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
