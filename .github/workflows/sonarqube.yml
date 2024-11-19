@@ -3,31 +3,15 @@ on:
   
 jobs:
 
-  analyse-code:
+  analyse-backend-code:
+
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/back
 
     runs-on: ubuntu-latest
 
     steps:
-
-      ## Front 
-
-      # - uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      
-      # - name: Analyze frontend
-      #   uses: SonarSource/sonarcloud-github-action@master
-      #   with: 
-      #     projectBaseDir: ./front
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      # - uses: actions/checkout@v4
-      #   with:
-      #       fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-      ## Back
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -57,7 +41,7 @@ jobs:
 
       - name: Analyze backend
         env:
-          projectBaseDir: ~/back
+          #projectBaseDir: ~/back
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         #working-directory: back
@@ -82,3 +66,24 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       
+
+
+        ## Front 
+
+      # - uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      # - name: Analyze frontend
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   with: 
+      #     projectBaseDir: ./front
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # - uses: actions/checkout@v4
+      #   with:
+      #       fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      ## Back
