@@ -28,8 +28,7 @@ jobs:
           args: >
             -Dsonar.organization=solau92
             -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD_front
-        # with: 
-        #   projectBaseDir: ./front
+          projectBaseDir: ./front
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
