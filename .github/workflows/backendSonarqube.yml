@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: SonarQube Report
-          path: .scannerwork/report-task.txt
+          path: ./back/target/sonar/report-task.txt
