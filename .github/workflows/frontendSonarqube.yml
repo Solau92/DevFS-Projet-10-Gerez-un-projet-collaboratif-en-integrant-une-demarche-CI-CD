@@ -24,6 +24,10 @@ jobs:
       
       - name: Analyze frontend
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=solau92
+            -Dsonar.projectKey= Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD_front 
         # with: 
         #   projectBaseDir: ./front
         env:
