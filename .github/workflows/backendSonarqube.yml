@@ -42,3 +42,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD_back
+
+      - name: Get SonarQube quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: SonarQube Report
+          path: .scannerwork/report-task.txt
