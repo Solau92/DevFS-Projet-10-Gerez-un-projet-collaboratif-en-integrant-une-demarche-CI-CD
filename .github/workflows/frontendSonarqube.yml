@@ -27,7 +27,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=solau92
-            -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD_front 
+            -Dsonar.projectKey=Solau92_DevFS-Projet-10-Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD_front
         # with: 
         #   projectBaseDir: ./front
         env:
