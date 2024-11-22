@@ -16,12 +16,11 @@ jobs:
       uses: ./.github/workflows/backendSonarqube.yml
       secrets: inherit
 
-  # call-workflow-frontend-sonarqube:
-  #   uses: ./.github/workflows/frontendSonarqube.yml
-  #   secrets: inherit
+  call-workflow-frontend-sonarqube:
+    uses: ./.github/workflows/frontendSonarqube.yml
+    secrets: inherit
 
   call-workflow-docker:
-    needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-backend-sonarqube]
-    # needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-backend-sonarqube, call-workflow-frontend-sonarqube]
+    needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-backend-sonarqube, call-workflow-frontend-sonarqube]
     uses: ./.github/workflows/docker.yml
     secrets: inherit
