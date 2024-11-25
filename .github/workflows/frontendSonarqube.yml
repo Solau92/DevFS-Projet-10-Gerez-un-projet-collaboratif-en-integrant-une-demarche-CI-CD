@@ -32,7 +32,7 @@ jobs:
             -Dsonar.tests=src
             -Dsonar.exclusions=**/*.spec.ts,**/*test.ts,**/*.js
             -Dsonar.test.inclusions=**/*.spec.ts,**/*test.ts
-            -Dsonar.javascript.lcov.reportPaths=coverage/bobapp/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=./coverage/bobapp/lcov.info
           projectBaseDir: ./front
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
