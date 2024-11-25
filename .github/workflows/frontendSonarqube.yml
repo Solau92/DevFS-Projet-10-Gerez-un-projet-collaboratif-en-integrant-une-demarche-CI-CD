@@ -33,7 +33,7 @@ jobs:
             -Dsonar.tests=src
             -Dsonar.exclusions=**/*.spec.ts,**/*test.ts,**/*.js
             -Dsonar.test.inclusions=**/*.spec.ts,**/*test.ts
-            -Dsonar.coverage.exclusions=.src/environments/**,src/main.ts
+            -Dsonar.coverage.exclusions=src/environments/**,src/main.ts
             -Dsonar.javascript.lcov.reportPaths=coverage/bobapp/lcov.info
           projectBaseDir: ./front
         env:
