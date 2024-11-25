@@ -13,6 +13,7 @@ jobs:
     uses: ./.github/workflows/frontendTests.yml
 
   call-workflow-backend-sonarqube:
+      needs: call-workflow-backend-tests
       uses: ./.github/workflows/backendSonarqube.yml
       secrets: inherit
 
