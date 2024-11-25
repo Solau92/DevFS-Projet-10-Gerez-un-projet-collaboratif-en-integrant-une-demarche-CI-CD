@@ -6,11 +6,11 @@ on:
 
 jobs: 
 
-  # call-workflow-backend-tests:
-  #   uses: ./.github/workflows/backendTests.yml
+  call-workflow-backend-tests:
+    uses: ./.github/workflows/backendTests.yml
 
-  # call-workflow-frontend-tests:
-  #   uses: ./.github/workflows/frontendTests.yml
+  call-workflow-frontend-tests:
+    uses: ./.github/workflows/frontendTests.yml
 
   call-workflow-backend-sonarqube:
       uses: ./.github/workflows/backendSonarqube.yml
@@ -20,7 +20,7 @@ jobs:
     uses: ./.github/workflows/frontendSonarqube.yml
     secrets: inherit
 
-  # call-workflow-docker:
-  #   needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-backend-sonarqube, call-workflow-frontend-sonarqube]
-  #   uses: ./.github/workflows/docker.yml
-  #   secrets: inherit
+  call-workflow-docker:
+    needs: [call-workflow-backend-tests, call-workflow-frontend-tests, call-workflow-backend-sonarqube, call-workflow-frontend-sonarqube]
+    uses: ./.github/workflows/docker.yml
+    secrets: inherit
