@@ -23,11 +23,11 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
-      - name: Get Jasmine test coverage report
-        uses: actions/download-artifact@v4
-        with:
-          name: Jasmine Report
-          path: ./front/coverage/bobapp
+      # - name: Get Jasmine test coverage report
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: Jasmine Report
+      #     path: ./front/coverage/bobapp
 
       # - name: Install packages 
       #   working-directory: ./front
