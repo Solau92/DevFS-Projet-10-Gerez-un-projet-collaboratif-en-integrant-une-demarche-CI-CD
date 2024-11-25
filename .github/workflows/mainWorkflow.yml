@@ -17,6 +17,7 @@ jobs:
   #     secrets: inherit
 
   call-workflow-frontend-sonarqube:
+    needs: call-workflow-frontend-tests
     uses: ./.github/workflows/frontendSonarqube.yml
     secrets: inherit
 
