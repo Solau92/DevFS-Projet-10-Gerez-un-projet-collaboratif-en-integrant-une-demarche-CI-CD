@@ -13,36 +13,15 @@ jobs:
 
     steps:
 
-      # - name: Clean the workspace
-      #   uses: docker://alpine
-      #   with:
-      #     args: /bin/sh -c "find \"${GITHUB_WORKSPACE}\" -mindepth 1 ! -name . -prune -exec rm -rf {} +"
-
-     
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
       
       - name: Get Jasmine test coverage report
         uses: actions/download-artifact@v4
         with:
           name: Jasmine Report
           path: ./front/coverage/bobapp
-
-      # - name: Install packages 
-      #   working-directory: ./front
-      #   run: npm ci
-  
-      # - name: Test frontend and coverage
-      #   working-directory: ./front
-      #   run: npm run test:ci
-        
-      # - name: Get Jasmine test coverage report
-      #   uses: actions/upload-artifact@v4
-      #   if: success() || failure()
-      #   with:
-      #     name: Jasmine Report
-      #     path: ./front/coverage/bobapp
 
       - name: Analyze frontend
         uses: SonarSource/sonarcloud-github-action@master
