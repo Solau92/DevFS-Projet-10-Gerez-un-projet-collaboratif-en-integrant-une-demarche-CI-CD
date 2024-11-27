@@ -26,4 +26,4 @@ jobs:
     needs: [call-workflow-backend-tests, call-workflow-frontend-tests, 
       call-workflow-backend-sonarqube, call-workflow-frontend-sonarqube]
     uses: ./.github/workflows/docker.yml
-    secrets: inherit
+    secrets: inherit 
